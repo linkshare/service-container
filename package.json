@@ -1,0 +1,32 @@
+{
+  "name": "service-container",
+  "version": "0.0.1",
+  "author": {
+    "name":"Brandon Eum"
+  },
+  "contributors":[],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/linkshare/service-container.git"
+  },
+  "main": "./lib/ServiceContainer",
+  "directories": {
+    "lib": "./lib",
+    "example":"./example"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/linkshare/service-container/LICENSE"
+    }
+  ],
+  "engines" : { "node" : ">=0.8.17" },
+  "dependencies": {},
+  "devDependencies": {
+    "chai":"latest",
+    "sinon":"latest",
+    "mocha":"latest",
+    "spears":"git://github.com/beum/spears-js.git",
+    "jscoverage":"latest"
+  }
+}

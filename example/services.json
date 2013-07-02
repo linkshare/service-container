@@ -1,0 +1,36 @@
+{
+  "parameters": {
+    "messenger.file":"./Messenger",
+    "messenger_manager.file":"./MessengerManager",
+    "hello_messenger.message":"Hello ",
+    "world_messenger.message":"World",
+    "exclamation_messenger.message":"!"
+  },
+  "services": {
+    "hello_messenger": {
+      "class":"%messenger.file%",
+      "arguments":["%hello_messenger.message%"]
+    },
+    "world_messenger": {
+      "class":"%messenger.file%",
+      "arguments":[],
+      "calls": [
+        ["setMessage", ["%world_messenger.message%"]]
+      ]
+    },
+    "exclamation_messenger": {
+      "class":"%messenger.file%",
+      "properties": {
+        "message":"%exclamation_messenger.message%"
+      }
+    },
+    "messenger_manager": {
+      "class":"%messenger_manager.file%",
+      "calls": [
+        ["addMessenger", ["@hello_messenger"]],
+        ["addMessenger", ["@world_messenger"]],
+        ["addMessenger", ["@exclamation_messenger"]]
+      ]
+    }
+  }
+}
