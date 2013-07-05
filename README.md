@@ -151,7 +151,7 @@ Included:
 
 ## Run the Tests
 
-    make test
+    make unittest
 
 ## Create Unit Test Coverage
 
