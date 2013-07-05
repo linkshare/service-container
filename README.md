@@ -68,10 +68,16 @@ var ServiceContainer = require('service-container');
 // This will include both services.json and services_[ENV].json files to override
 // any environment-specific parameters
 var options = {
-  env: 'test'
+  env: 'test',
+  ignoreNodeModulesDirectory: true
 };
 var container = ServiceContainer(__dirname, options);
 ```
+
+There are two available options:
+* `env` - Which will cause the builder to search for `services_[ENV].json` files
+* `ignoreNodeModulesDirectory` - Which will prevent a recursive search through your dependent modules
+
 
 Get an instance of a service like:
 

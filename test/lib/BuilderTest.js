@@ -37,9 +37,11 @@ describe('lib/Definition.js', function () {
       mockFs = {};
       mockFs.readdirSync = function (path) {
         if (path === '/test') {
-          return ['services.json', 'subdir'];
+          return ['services.json', 'subdir', 'node_modules'];
         } else if (path === '/test/subdir') {
           return ['services.json', 'services_test.json'];
+        } else if (path === '/test/node_modules') {
+          return ['services.json'];
         } else {
           return [];
         }
@@ -142,6 +144,21 @@ describe('lib/Definition.js', function () {
         { file: '/test/services.json', level: 0, isEnvFile: false },
         { file: '/test/subdir/services.json', level: 1, isEnvFile: false },
         { file: "/test/subdir/services_test.json", level: 1, isEnvFile: true }
+      ];
+      expect(result).to.deep.equal(expected);
+    });
+    
+    it('Should look in the "node_modules" folder if the flag is set', function () {
+      var builder, mockFs, result, expected;
+      mockFs = buildMockFs();      
+      builder = new Builder(mockFs, null, null, null);
+      builder.options.ignoreNodeModulesDirectory = false;
+      
+      result = builder.findServiceJsonFiles('/test', 0);
+      expected = [
+        { file: '/test/services.json', level: 0, isEnvFile: false },
+        { file: '/test/subdir/services.json', level: 1, isEnvFile: false },
+        { file: "/test/node_modules/services.json", level: 1, isEnvFile: false }
       ];
       expect(result).to.deep.equal(expected);
     });
