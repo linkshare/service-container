@@ -140,6 +140,17 @@ qa or production environment.
 }
 ```
 
+Other service options:
+* `"constructor"` - A specific constructor function if including a library that
+  serves as a namespace for many constructors.  For example: `mylibrary.SomeClass`
+  the constructor would be "SomeClass".
+* `"isObject"` - When including a service that is an object and not a constructor
+  like the node module `fs`
+* `"isSingleton"` - Create only one of these objects as a service which will be
+  passed around everytime the service is called.  The default behavior is that
+  new objects will be created everytime the user requests this service from the
+  container.
+
 ## Examples
 
 Check out the `example` directory to see some of the more common use cases for a

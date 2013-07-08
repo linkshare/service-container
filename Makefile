@@ -7,4 +7,4 @@ coverage:
   export NODE_TEST_ENV=coverage && \
   ./node_modules/mocha/bin/mocha --reporter html-cov --recursive > coverage.html
 
- .PHONY: test
+ .PHONY: unittest coverage
