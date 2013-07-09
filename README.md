@@ -103,6 +103,7 @@ you to override any parameters setup earlier.
 The hierarchy of services and parameters are as follows:
 * services.json files at lower folder levels are overridden by those at higher levels
 * services.json files are overriden by services_[ENV].json files
+* parameters are loaded and overriden by any parameters in the parameters.json file (see below)
 
 This allows you to override the specifics of a module from the application level
 and allows you to override any parameter based on whether this is your dev, test,
@@ -150,6 +151,17 @@ Other service options:
   passed around everytime the service is called.  The default behavior is that
   new objects will be created everytime the user requests this service from the
   container.
+
+## parameters.json
+
+The service container will also load its configurations through files named
+`paramters.json`.  Only the parameters block is loaded from these files and they
+override any previously seen parameters.  This file is specifically meant to be
+out of version control and maintain deployment-specific details such as a DB user
+and password, or the log level of a specific environment, etc.  These are details
+that should be configured on the server level manually or through your configuration
+manager.
+
 
 ## Examples
 
