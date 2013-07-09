@@ -507,7 +507,7 @@ describe('lib/Container.js', function () {
     });
 
     it('Should set any properties for Property Injection', function () {
-      var container, definition, test, result;
+      var container, definition, result;
       definition = new Definition();
       definition.file = '%param%';
       definition.properties = {prop:1};
@@ -524,6 +524,7 @@ describe('lib/Container.js', function () {
 
       // Check that the property injection was applied
       expect(result.arg).to.be.undefined;
+      console.log(result)
       expect(result.prop).to.equal(1);
     });
   });
