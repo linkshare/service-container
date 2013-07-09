@@ -1,7 +1,7 @@
 {
   "name": "service-container",
   "description":"A Symfony2 inspired depdendency injection container for node",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": {
     "name":"Brandon Eum"
   },
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git://github.com/linkshare/service-container.git"
   },
-  "main": "./lib/ServiceContainer",
+  "main": "ServiceContainer.js",
   "directories": {
     "lib": "./lib",
     "example":"./example"
