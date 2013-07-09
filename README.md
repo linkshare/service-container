@@ -142,9 +142,9 @@ qa or production environment.
 ```
 
 Other service options:
-* `"constructor"` - A specific constructor function if including a library that
+* `"constructorMethod"` - A specific constructor function if including a library that
   serves as a namespace for many constructors.  For example: `mylibrary.SomeClass`
-  the constructor would be "SomeClass".
+  the constructorMethod would be "SomeClass".
 * `"isObject"` - When including a service that is an object and not a constructor
   like the node module `fs`
 * `"isSingleton"` - Create only one of these objects as a service which will be
