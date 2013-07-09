@@ -398,13 +398,13 @@ describe('lib/Container.js', function () {
         var container, definition, require, result;
         definition = new Definition();
         definition.file = 'test_file';
-        definition.constructor = 'constructor'
+        definition.constructorMethod = 'constructorMethod'
 
         // Mock a require function that returns an object constructor
         var spy = sinon.spy(function () {});
         require = function (arg) {
           return {
-            constructor: spy
+            constructorMethod: spy
           };
         };
 
@@ -524,7 +524,6 @@ describe('lib/Container.js', function () {
 
       // Check that the property injection was applied
       expect(result.arg).to.be.undefined;
-      console.log(result)
       expect(result.prop).to.equal(1);
     });
   });
