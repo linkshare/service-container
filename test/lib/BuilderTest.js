@@ -127,9 +127,9 @@ describe('lib/Builder.js', function () {
       builder = new Builder(mockFs, null, null, null);
       result = builder.findServiceJsonFiles('/test', 0);
       expected = [
-        { file: '/test/services.json', level: 0, isEnvFile: false, isParamFile:false },
-        { file: '/test/parameters.json', level: 0, isEnvFile: false, isParamFile:true },
-        { file: '/test/subdir/services.json', level: 1, isEnvFile: false, isParamFile:false }
+        { file: '/test/services.json', dir: '/test', level: 0, isEnvFile: false, isParamFile:false },
+        { file: '/test/parameters.json', dir: '/test', level: 0, isEnvFile: false, isParamFile:true },
+        { file: '/test/subdir/services.json', dir: '/test/subdir', level: 1, isEnvFile: false, isParamFile:false }
       ];
       expect(result).to.deep.equal(expected);
     });
@@ -142,10 +142,10 @@ describe('lib/Builder.js', function () {
 
       result = builder.findServiceJsonFiles('/test', 0);
       expected = [
-        { file: '/test/services.json', level: 0, isEnvFile: false, isParamFile:false },
-        { file: '/test/parameters.json', level: 0, isEnvFile: false, isParamFile:true },
-        { file: '/test/subdir/services.json', level: 1, isEnvFile: false, isParamFile:false },
-        { file: "/test/subdir/services_test.json", level: 1, isEnvFile: true, isParamFile:false }
+        { file: '/test/services.json', dir: '/test', level: 0, isEnvFile: false, isParamFile:false },
+        { file: '/test/parameters.json', dir: '/test', level: 0, isEnvFile: false, isParamFile:true },
+        { file: '/test/subdir/services.json', dir: '/test/subdir', level: 1, isEnvFile: false, isParamFile:false },
+        { file: "/test/subdir/services_test.json", dir: '/test/subdir', level: 1, isEnvFile: true, isParamFile:false }
       ];
       expect(result).to.deep.equal(expected);
     });
@@ -158,10 +158,10 @@ describe('lib/Builder.js', function () {
 
       result = builder.findServiceJsonFiles('/test', 0);
       expected = [
-        { file: '/test/services.json', level: 0, isEnvFile: false, isParamFile:false },
-        { file: '/test/parameters.json', level: 0, isEnvFile: false, isParamFile:true },
-        { file: '/test/subdir/services.json', level: 1, isEnvFile: false, isParamFile:false },
-        { file: "/test/node_modules/services.json", level: 1, isEnvFile: false, isParamFile:false }
+        { file: '/test/services.json', dir: '/test', level: 0, isEnvFile: false, isParamFile:false },
+        { file: '/test/parameters.json', dir: '/test', level: 0, isEnvFile: false, isParamFile:true },
+        { file: '/test/subdir/services.json', dir: '/test/subdir', level: 1, isEnvFile: false, isParamFile:false },
+        { file: "/test/node_modules/services.json", dir: '/test/node_modules', level: 1, isEnvFile: false, isParamFile:false }
       ];
       expect(result).to.deep.equal(expected);
     });
@@ -176,10 +176,10 @@ describe('lib/Builder.js', function () {
 
       // Levels are set in expected results
       expected = [
-        { file: '/test/services.json', level: 0, isEnvFile: false, isParamFile:false },
-        { file: '/test/parameters.json', level: 0, isEnvFile: false, isParamFile:true },
-        { file: '/test/subdir/services.json', level: 1, isEnvFile: false, isParamFile:false },
-        { file: "/test/subdir/services_test.json", level: 1, isEnvFile: true, isParamFile:false }
+        { file: '/test/services.json', dir: '/test', level: 0, isEnvFile: false, isParamFile:false },
+        { file: '/test/parameters.json', dir: '/test', level: 0, isEnvFile: false, isParamFile:true },
+        { file: '/test/subdir/services.json', dir: '/test/subdir', level: 1, isEnvFile: false, isParamFile:false },
+        { file: "/test/subdir/services_test.json", dir: '/test/subdir', level: 1, isEnvFile: true, isParamFile:false }
       ];
       expect(result).to.deep.equal(expected);
     });

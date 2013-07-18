@@ -112,7 +112,7 @@ qa or production environment.
 ```javascript
 {
   "parameters": {
-    "dependency_service.file":"./CoolClass",   // File paths are relative to the root passed into the builder
+    "dependency_service.file":"./CoolClass",   // File paths are relative to the services.json file
     "dependency2_service.file":"./OtherClass",
     "my_service.file":"MyClass",
     "my_service.example_param":"yes",          // Parameter names are arbitrary
