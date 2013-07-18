@@ -141,7 +141,8 @@ qa or production environment.
 }
 ```
 
-Other service options:
+### Other Service Options
+
 * `"constructorMethod"` - A specific constructor function if including a library that
   serves as a namespace for many constructors.  For example: `mylibrary.SomeClass`
   the constructorMethod would be "SomeClass".
@@ -152,7 +153,8 @@ Other service options:
   new objects will be created everytime the user requests this service from the
   container.
 
-## parameters.json
+
+### parameters.json
 
 The service container will also load its configurations through files named
 `paramters.json`.  Only the parameters block is loaded from these files and they
@@ -162,6 +164,30 @@ and password, or the log level of a specific environment, etc.  These are detail
 that should be configured on the server level manually or through your configuration
 manager.
 
+
+### Importing Other JSON Service Configuration Files
+
+To support more complex service.json file organizations, the `"imports"` key allows
+any JSON file to be parsed like a services.json file.  In terms of service and parameter
+hierarchy, the imports are at the same level as the file that they are found in.
+The imports are parsed top to bottom, and are all overridden by whatever content
+is in the services.json file.
+
+
+```javascript
+{
+  "imports": [
+    "../my_other_services.json",
+    "./lib/stuff.json"
+  ],
+  "parameters": {
+    // ...
+  },
+  "services": {
+    // ...
+  }
+}
+```
 
 ## Examples
 
