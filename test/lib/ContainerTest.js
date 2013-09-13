@@ -207,6 +207,97 @@ describe('lib/Container.js', function () {
   /**
    *
    */
+  describe('#deepCopyObject', function () {
+    it('Should copy recursively to a new object (object)', function () {
+      var container, test, result;
+      container = new Container();
+
+      test = {
+        test1:true,
+        test2:true,
+        test3:true
+      };
+      result = container.deepCopyObject(test);
+      expect(result).to.deep.equal(test);
+
+      // Check that result is actually a new object
+      result.new_key = true;
+      expect(test.new_key).to.be.an('undefined');
+    });
+    it('Should copy recursively to a new object (embedded object)', function () {
+      var container, test, result;
+      container = new Container();
+
+      test = {
+        test1:true,
+        test2:true,
+        test3: {
+          test4: false
+        }
+      };
+      result = container.deepCopyObject(test);
+      expect(result).to.deep.equal(test);
+
+      // Check that result is actually a new object
+      result.new_key = true;
+      expect(test.new_key).to.be.an('undefined');
+      result.test3.new_key = true;
+      expect(test.test3.new_key).to.be.an('undefined');
+    });
+    it('Should copy recursively to a new object (array of objects)', function () {
+      var container, test, result;
+      container = new Container();
+
+      test = [
+        {
+          test1:true,
+          test2:true,
+          test3:true
+        },
+        {
+          test4:false,
+          test5:false,
+          test6:false
+        }
+      ];
+      result = container.deepCopyObject(test);
+      expect(result).to.deep.equal(test);
+
+      // Check that result is actually a new object
+      result[0].new_key = true;
+      result[1].new_key = false;
+      expect(test[0].new_key).to.be.an('undefined');
+      expect(test[1].new_key).to.be.an('undefined');
+    });
+    it('Should copy recursively to a new object (array)', function () {
+      var container, test, result;
+      container = new Container();
+
+      test = ['a',2];
+      result = container.deepCopyObject(test);
+      expect(result).to.deep.equal(test);
+
+      // Check that result is actually a new object
+      result.push(3);
+      expect(test.length).to.equal(2);
+    });
+    it('Should copy recursively to a new object (scalar)', function () {
+      var container, test, result;
+      container = new Container();
+
+      test = 'a';
+      result = container.deepCopyObject(test);
+      expect(result).to.deep.equal(test);
+
+      // Check that result is actually a new object
+      result = 'b';
+      expect(test).to.equal('a');
+    });
+  });
+
+  /**
+   *
+   */
   describe('#constructArguments', function () {
     describe('Should take an array of argumentReferences and properly construct and return an array of arguments', function () {
       it('Should return literal values as-is', function () {
@@ -591,6 +682,16 @@ describe('lib/Container.js', function () {
       container = new Container();
       result = container.getParameter('some_param');
       expect(result).to.be.an('undefined');
+    });
+    it('Should return the cloned object if the parameter is an object', function () {
+      var container, test, result;
+      container = new Container();
+      test = {a:1,b:2};
+      container.setParameter('some_param', test);
+      result = container.getParameter('some_param');
+      expect(result).to.deep.equal(test);
+      result.new_key = true;
+      expect(test.new_key).to.be.an('undefined');
     });
   });
 
