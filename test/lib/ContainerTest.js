@@ -465,6 +465,27 @@ describe('lib/Container.js', function () {
       expect(container.services['some_service']).to.deep.equal(result);
     });
 
+    it('Should return the existing services if this is a singleton', function () {
+      var container, definition, test, result1, result2;
+      definition = new Definition();
+      definition.file = '%param%';
+      definition.isSingleton = true;
+
+      // Mock a require function that returns an object constructor
+      container = constructTestContainer();
+      container.require.withArgs('test_file');
+      container.set('some_service', definition);
+      container.setParameter('param', 'test_file');
+
+      test = {};
+      result1 = container.constructService('some_service', false, test);
+      result2 = container.get('some_service');
+
+      // Check that the returned objects are the same
+      expect(result1).to.deep.equal(result2);
+    });
+
+
     it('Should construct any arguments for Constructor Injection', function () {
       var container, definition, test, result;
       definition = new Definition();
