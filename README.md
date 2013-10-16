@@ -71,7 +71,7 @@ var options = {
   env: 'test',
   ignoreNodeModulesDirectory: true
 };
-var container = ServiceContainer(__dirname, options);
+var container = ServiceContainer.buildContainer(__dirname, options);
 ```
 
 There are two available options:
