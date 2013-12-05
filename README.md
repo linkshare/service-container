@@ -189,6 +189,45 @@ is in the services.json file.
 }
 ```
 
+
+### Namespaces
+
+In addition to imports, another key feature for a complex application is the
+use of namespaces.  Within any of your `services.json` files, you can apply a
+namespace which will be prefixed to all of the paramters and services defined
+in that file.  In addition, the namespace will be prepended to any files that
+are imported via a name-spaced file and if they have their own namespace, it
+will be applied after the namespace from the importing file.
+
+All of the references within a `services.json` file using a namespace will prefer
+parameters and services using that namespace and if no matching parameter or
+service can be found, it will graduate to the non-namespaced version of the
+service or parameter name.
+
+So for example:
+
+```javascript
+{
+  "namespace": "api_models.v2",
+  "parameters": {
+    "user.class": "./User.js"
+  },
+  "services": {
+    "user": {"class": "%user.class%"}
+  }
+}
+```
+
+In the example above, you would actually retrieve the user service from the
+container by including the namespace:
+
+    var User = container.get('api_models.v2.user');
+
+And although the user class is specified by `user.class`, it will actually
+look up the parameter named `api_models.v2.user.class` first, and if that is
+not found, it will use the parameter `user.class`.
+
+
 ## Examples
 
 Check out the `example` directory to see some of the more common use cases for a
