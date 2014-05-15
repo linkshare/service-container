@@ -1,7 +1,7 @@
 {
   "name": "service-container",
   "description":"A Symfony2 inspired depdendency injection container for node",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "author": {
     "name":"Brandon Eum"
   },
