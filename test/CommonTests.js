@@ -12,7 +12,7 @@
 
 var chai, expect;
 chai = require('chai');
-chai.Assertion.includeStack = true;
+chai.config.includeStack = true;
 expect = chai.expect;
 
 

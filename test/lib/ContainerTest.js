@@ -16,7 +16,7 @@ chai             = require('chai');
 expect           = chai.expect;
 sinon            = require('sinon');
 
-chai.Assertion.includeStack = true;
+chai.config.includeStack = true;
 
 
 // Use the service container to get the right Definition file
@@ -714,6 +714,19 @@ describe('lib/Container.js', function () {
       result.new_key = true;
       expect(test.new_key).to.be.an('undefined');
     });
+    it('Should return the filled value if the parameter contains parameters', function () {
+      var container, test, testRef, result;
+      container = new Container();
+      test = "some_value";
+      container.setParameter('some_param', test);
+      testRef = "%some_param% -- %some_param%"
+      container.setParameter('deref', testRef);
+      result = container.getParameter('deref');
+      expect(result).to.equal("some_value -- some_value");
+      result.new_key = true;
+      expect(test.new_key).to.be.an('undefined');
+    });
+
   });
 
   /**

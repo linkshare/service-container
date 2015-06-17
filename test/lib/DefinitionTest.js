@@ -15,7 +15,7 @@ chai             = require('chai');
 expect           = chai.expect;
 sinon            = require('sinon');
 
-chai.Assertion.includeStack = true;
+chai.config.includeStack = true;
 
 
 // Use the service container to get the right Definition file
